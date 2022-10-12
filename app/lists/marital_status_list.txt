@@ -1,0 +1,6 @@
+Single
+Married/Civil Partner
+Divorced/Person whose Civil Partnership has been dissolved
+Widowed/Surviving Civil Partner
+Separated
+Not disclosed
