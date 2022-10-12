@@ -6,95 +6,93 @@ Add Form
 {% endblock head_title %}
 
 {% block content %}
-<div class="p-5 min-vh-100">
-    <div class="p-5">
-        <div class="col-lg-8 mx-auto">
-            <form class="p-5 shadow-lg border bg-dark text-light"
-                style="border-radius: 1rem;"
-                action=""
-                enctype="multipart/form-data"
-                method="post"
-                novalidate>
-                <h1>Add form</h1>
-                {% csrf_token %}
-                {{ form|as_crispy_errors }}
-                <div class="row">
-                    <div class="col-lg-4">
-                        {{ form.last_name|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-4">
-                        {{ form.first_name|as_crispy_field }}
-                    </div>
-                    <div class="col-4">
-                        {{ form.middle_name|as_crispy_field }}
-                    </div>
+<div class="p-lg-5 min-vh-100">
+    <div class="col-lg-8 col-sm-12 mx-auto p-lg-5">
+        <form class="p-5 shadow-lg border bg-dark text-light"
+            style="border-radius: 1rem;"
+            action=""
+            enctype="multipart/form-data"
+            method="post"
+            novalidate>
+            <h1>Add form</h1>
+            {% csrf_token %}
+            {{ form|as_crispy_errors }}
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ form.last_name|as_crispy_field }}
                 </div>
-                <div class="row">
-                    {{ form.alias_name|as_crispy_field }}
+                <div class="col-lg-4">
+                    {{ form.first_name|as_crispy_field }}
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-6">
-                        {{ form.ht_ft|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-6">
-                        {{ form.ht_in|as_crispy_field }}
-                    </div>
+                <div class="col-lg-4">
+                    {{ form.middle_name|as_crispy_field }}
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-6">
-                        {{ form.wt_ks|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-6">
-                        {{ form.wt_lbs|as_crispy_field }}
-                    </div>
+            </div>
+            <div class="row">
+                {{ form.alias_name|as_crispy_field }}
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form.ht_ft|as_crispy_field }}
                 </div>
-                <hr>
-                <div class="row">
-                    {{ form.marks|as_crispy_field }}
+                <div class="col-lg-6">
+                    {{ form.ht_in|as_crispy_field }}
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-4">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form.wt_ks|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form.wt_lbs|as_crispy_field }}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                {{ form.marks|as_crispy_field }}
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-4">
                     {{ form.dob|as_crispy_field }}
-                    </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-6">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
                     {{ form.pob|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
                     {{ form.nationality|as_crispy_field }}
-                    </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-6">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
                     {{ form.overstayed|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
                     {{ form.convicted|as_crispy_field }}
-                    </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-6">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
                     {{ form.religion|as_crispy_field }}
-                    </div>
-                    <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
                     {{ form.marital_status|as_crispy_field }}
-                    </div>
                 </div>
-                <!-- {% csrf_token %} -->
-                <!-- {{form|crispy}} -->
-                <div class="text-end pt-5">
-                    <button
-                        class="btn btn-sm px-5 btn-outline-light">Submit</button>
-                </div>
-            </form>
-        </div>
+            </div>
+            <!-- {% csrf_token %} -->
+            <!-- {{form|crispy}} -->
+            <div class="text-end pt-5">
+                <button
+                    class="btn btn-sm px-5 btn-outline-light">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock content %}

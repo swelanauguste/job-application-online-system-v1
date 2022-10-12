@@ -38,6 +38,28 @@ class Religion(models.Model):
         return reverse("maritalStatus_detail", kwargs={"pk": self.pk})
 
 
+class Nationality(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    class Meta:
+        verbose_name = "nationality"
+        verbose_name_plural = "nationalities"
+
+    def __str__(self):
+        return self.name.title()
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    class Meta:
+        verbose_name = "country"
+        verbose_name_plural = "countries"
+
+    def __str__(self):
+        return self.name.title()
+
+
 class Applicant(models.Model):
     # applicant = models.ForeignKey(Applicant, on_delete=models.SET_NULL, null=True)
     last_name = models.CharField(max_length=200, blank=True)
@@ -52,8 +74,10 @@ class Applicant(models.Model):
     wt_lbs = models.FloatField("height in pounds", default=0)
     marks = models.TextField("any distinguishing marks", blank=True)
     dob = models.DateField("date of birth", null=True)
-    pob = models.CharField("place of birth", max_length=50)
-    nationality = models.CharField(max_length=50)
+    pob = models.ForeignKey(
+        Country, on_delete=models.SET_NULL, null=True, verbose_name="place of birth"
+    )
+    nationality = models.ForeignKey(Nationality, on_delete=models.SET_NULL, null=True)
     overstayed = models.BooleanField(
         "have you overstayed in any country",
         default=False,

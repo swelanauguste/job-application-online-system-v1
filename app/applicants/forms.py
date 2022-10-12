@@ -9,8 +9,8 @@ class ApplicantCreateForm(forms.ModelForm):
         fields = "__all__"
         exclude = ("passport", "address", "contact")
         widgets = {
-            'alias_name': forms.Textarea(attrs={"rows": 3}),
-            'marks': forms.Textarea(attrs={"rows": 3}),
-            'dob': forms.TextInput(attrs={"type": "date"}),
+            "alias_name": forms.Textarea(attrs={"rows": 3, "cols": 3}),
+            "marks": forms.Textarea(attrs={"rows": 3}),
+            "dob": forms.TextInput(attrs={"type": "date"}),
             # 'overstayed': forms.RadioSelect()(),
         }
