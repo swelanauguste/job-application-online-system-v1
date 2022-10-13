@@ -2,50 +2,66 @@
 
 {% load humanize %}
 
-
 {% block head_title %}
-{{object.get_full_name|title}}
+{{object.get_full_name }}
 {% endblock head_title %}
 
 {% block content %}
-<div class="p-5 min-vh-100">
-    <h1>{{object.name|title}}</h1>
+<div class="p-lg-5 min-vh-100">
+    <h1>{{object.get_full_name}}</h1>
     <hr>
-    <div class="p-5">
-        <div class="p-5 border bg-dark shadow col-lg-6 mx-auto"
-            style="border-radius: 1rem;">
-            <div class="row">
-                <div class="col-lg-4 bg-light shadow p-3 text-end"
-                    style="border-radius: 1rem;">
-                    <p>Name</p>
-                    <p>Height</p>
-                    <p>Weight</p>
-                    <p>Date of Birth</p>
-                    <p>Place of Birth</p>
-                    <p>Nationality</p>
-                    <p>Overstayed in a country</p>
-                    <p>Have been convicted</p>
-                    <p>Religion</p>
-                    <p>Marital Status</p>
-                </div>
-                <div class="col p-3 text-white">
-                    <p>{{object.get_full_name}}</p>
-                    <p>{{object.ht_ft|default:"--" }}ft/{{object.ht_in|default:"--" }}in</p>
-                    <p>{{object.wt_ks|default:"--" }}kg/{{object.wt_lbs|default:"--" }}lbs</p>
-                    <p>{{object.dob}}</p>
-                    <p>{{object.pob}}</p>
-                    <p>{{object.nationality}}</p>
-                    <p>{{object.overstayed|yesno}}</p>
-                    <p>{{object.convicted|yesno}}</p>
-                    <p>{{object.religion|default:"--" }}</p>
-                    <p>{{object.marital_status|default:"--" }}</p>
-                </div>
+    <div class="p-lg-5">
+        <div class="p-5 border bg-dark shadow col-lg-6 col-sm-12 mx-auto rounded-5"
+            >
+            <div class="text-center pb-5 my-0">
+                <a href="#"
+                    class="btn btn-sm btn-outline-light px-5 my-sm-3"
+                    type="submit">Edit</a>
+                <a href="#"
+                    class="btn btn-sm btn-outline-light px-5"
+                    type="submit">Add Address</a>
+                <a href="#"
+                    class="btn btn-sm btn-outline-light px-5"
+                    type="submit">Add Contact</a>
+                <a href="#"
+                    class="btn btn-sm btn-outline-light px-5"
+                    type="submit">Add Passport</a>
             </div>
-            <div class="text-center pt-5 my-3">
-                <a href="#" class="btn btn-sm btn-outline-light px-5" type="submit">Edit</a>
-                <a href="#" class="btn btn-sm btn-outline-light px-5" type="submit">Add Address</a>
-                <a href="#" class="btn btn-sm btn-outline-light px-5" type="submit">Add Contact</a>
-                <a href="#" class="btn btn-sm btn-outline-light px-5" type="submit">Add Passport</a>
+            <div class="mx-auto">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-2 bg-light shadow p-lg-3 py-sm-3 text-end rounded-5"
+                        >
+                        <p>Name</p>
+                        <p>Height</p>
+                        <p>Weight</p>
+                        <p>Date of Birth</p>
+                        <p>Place of Birth</p>
+                        <p>Nationality</p>
+                        <p>Overstayed in a country</p>
+                        <p>Have been convicted</p>
+                        <p>Religion</p>
+                        <p>Marital Status</p>
+                        <p>Address</p>
+                    </div>
+                    <div class="col-lg-7 border border-white p-3 text-white mx-1 col-sm-2 py-sm-3 rounded-5"
+                        >
+                        <p>{{object.get_full_name}}</p>
+                        <p>{{object.ht_ft|default:"--" }}ft /
+                            {{object.ht_in|default:"--" }}in</p>
+                        <p>{{object.wt_lbs|default:"--" }}lbs /
+                            {{object.wt_ks|default:"--" }}kg</p>
+                        <p>{{object.dob}}</p>
+                        <p>{{object.pob}}</p>
+                        <p>{{object.nationality}}</p>
+                        <p>{{object.overstayed|yesno|title}}</p>
+                        <p>{{object.convicted|yesno|title}}</p>
+                        <p>{{object.religion|default:"--" }}</p>
+                        <p>{{object.marital_status|default:"--" }}</p>
+                        <p>
+                         {{object.addresses.last|default:"No address"}}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %}
+Applicants
+{% endblock head_title %}
+
+
+{% load humanize %}
+
+{% block content %}
+<div class="p-5 vh-100">
+    <h1>Applicants</h1>
+    <hr>
+    <div class="px-lg-5 py-lg-1">
+        <ol>
+            {% for applicant in object_list %}
+            <li>
+                <span class="fs-3"> <a title="${{applicant.cost|floatformat:2|intcomma}}"
+                        class="text-decoration-none text-dark"
+                        href="{{applicant.get_absolute_url}}">{{applicant.get_full_name}}
+                    </a></span><br>
+                <span class="text-muted px-3 small py-0">{{applicant.dob}} {{applicant.pob|title}}</span><br>
+                <span class="text-muted px-3 small py-0">{{applicant.addresses.last}}</span>
+                <hr>
+            </li>
+            {% empty %}
+            <div class="text-center">
+                <h4>No applicants</h4>
+            </div>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+{% endblock content %}

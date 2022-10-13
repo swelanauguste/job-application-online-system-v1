@@ -1,7 +1,7 @@
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 
-from .models import Applicant
 from .forms import ApplicantCreateForm
+from .models import Applicant
 
 
 class ApplicantCreateView(CreateView):
@@ -10,4 +10,8 @@ class ApplicantCreateView(CreateView):
 
 
 class ApplicantDetailView(DetailView):
+    model = Applicant
+
+
+class ApplicantListView(ListView):
     model = Applicant

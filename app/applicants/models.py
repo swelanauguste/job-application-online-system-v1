@@ -16,6 +16,7 @@ class MaritalStatus(models.Model):
     class Meta:
         verbose_name = "marital status"
         verbose_name_plural = "marital statuses"
+        ordering = ("status",)
 
     def __str__(self):
         return self.status.title()
@@ -30,6 +31,7 @@ class Religion(models.Model):
     class Meta:
         verbose_name = "religion"
         verbose_name_plural = "religions"
+        ordering = ("name",)
 
     def __str__(self):
         return self.name.title()
@@ -44,6 +46,7 @@ class Nationality(models.Model):
     class Meta:
         verbose_name = "nationality"
         verbose_name_plural = "nationalities"
+        ordering = ("name",)
 
     def __str__(self):
         return self.name.title()
@@ -55,6 +58,19 @@ class Country(models.Model):
     class Meta:
         verbose_name = "country"
         verbose_name_plural = "countries"
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name.title()
+
+
+class District(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    class Meta:
+        verbose_name = "district"
+        verbose_name_plural = "districts"
+        ordering = ("name",)
 
     def __str__(self):
         return self.name.title()
@@ -96,6 +112,7 @@ class Applicant(models.Model):
     class Meta:
         verbose_name = "applicant"
         verbose_name_plural = "applicants"
+        ordering = ("last_name",)
 
     def __str__(self):
         return self.first_name
@@ -120,6 +137,7 @@ class Passport(models.Model):
     class Meta:
         verbose_name = "passport"
         verbose_name_plural = "passports"
+        ordering = ("-pk",)
 
     def __str__(self):
         return self.passport_number
@@ -129,17 +147,23 @@ class Passport(models.Model):
 
 
 class Address(models.Model):
-    applicant = models.ForeignKey(Applicant, on_delete=models.SET_NULL, null=True)
+    applicant = models.ForeignKey(
+        Applicant, on_delete=models.SET_NULL, null=True, related_name="addresses"
+    )
     address1 = models.CharField(max_length=200)
-    address2 = models.CharField(max_length=200)
+    address2 = models.CharField(max_length=200, blank=True)
+    address3 = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
     direction = models.TextField("directions to your home")
 
     class Meta:
         verbose_name = "address"
         verbose_name_plural = "addresses"
+        ordering = ("-pk",)
 
     def __str__(self):
-        return f"{self.address1}, {self.address2}"
+        if self.address2:
+            return f"{self.address1}, {self.address2}, {self.address3.name.upper()}"
+        return f"{self.address1}, {self.address3.name.upper()}"
 
     def get_absolute_url(self):
         return reverse("address_detail", kwargs={"pk": self.pk})
@@ -157,6 +181,7 @@ class Other(models.Model):
     class Meta:
         verbose_name = "other"
         verbose_name_plural = "others"
+        ordering = ("-pk",)
 
     def __str__(self):
         return f"{self.marital_status.status}, {self.religion.name}, {self.children}, {self.dependents}"
@@ -173,9 +198,10 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "contact"
         verbose_name_plural = "contacts"
+        ordering = ("-pk",)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("contact_detail", kwargs={"pk": self.pk})
+        return reverse("contact-detail", kwargs={"pk": self.pk})

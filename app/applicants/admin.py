@@ -10,6 +10,7 @@ from .models import (
     Other,
     Passport,
     Religion,
+    District
 )
 
 admin.site.register(Passport)
@@ -21,3 +22,4 @@ admin.site.register(Applicant)
 admin.site.register(Religion)
 admin.site.register(Nationality)
 admin.site.register(Country)
+admin.site.register(District)
